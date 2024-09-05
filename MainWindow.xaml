@@ -1,0 +1,93 @@
+﻿<Window x:Class="GradingEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FU Grading Editor" Height="700" Width="1000">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- File Selection and Sheet Selection -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Open Grading File:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox x:Name="FilePathTextBox" Grid.Column="1" Margin="0,0,10,0"/>
+            <Button Content="..." Width="30" Grid.Column="2" Click="OnSelectFileClick" Margin="0,0,10,0"/>
+            <TextBlock Text="Select Sheet:" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <ComboBox x:Name="SheetSelectionComboBox" Grid.Column="4" Width="150" SelectionChanged="OnSheetSelectionChanged"/>
+        </Grid>
+
+        <!-- Select/Deselect All Checkbox -->
+        <CheckBox x:Name="SelectAllCheckBox" Content="Select/Deselect All" 
+                  Checked="OnSelectAllChecked" Unchecked="OnSelectAllUnchecked" 
+                  Grid.Row="1" Margin="0,10,0,10"/>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- ListBox -->
+            <ListBox x:Name="ColumnListBox" Grid.Column="0" Width="200" Margin="0,0,10,0"/>
+            <!-- DataGrid -->
+            <DataGrid x:Name="GradingDataGrid" Grid.Column="1" 
+                      AutoGenerateColumns="False" CanUserAddRows="False" 
+                      CanUserDeleteRows="False" CanUserSortColumns="True" IsReadOnly="False"/>
+        </Grid>
+
+        <!-- Component Management -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,10">
+            <TextBox x:Name="NewComponentTextBox" Width="200" Margin="0,0,10,0"/>
+            <Button Content="Add Component" Click="OnAddComponentClick" Width="120"/>
+            <Button Content="Remove Selected" Click="OnRemoveComponentClick" Width="120" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <!-- Student Management -->
+        <Grid Grid.Row="4" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Roll number:" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox x:Name="NewStudentRollTextBox" Grid.Column="1" Margin="0,0,10,0"/>
+            <TextBlock Text="Name:" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox x:Name="NewStudentNameTextBox" Grid.Column="3" Margin="0,0,10,0"/>
+            <Button Content="Add Student" Grid.Column="4" Click="OnAddStudentClick" Width="100"/>
+            <Button Content="Delete Selected Rows" Grid.Column="5" Click="OnDeleteSelectedRowsClick" Width="140" Margin="10,0,0,0"/>
+        </Grid>
+
+        <!-- Search and Action Buttons -->
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Search Role:" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox x:Name="SearchRoleTextBox" Grid.Column="1" Margin="0,0,10,0"/>
+            <Button Content="Search" Grid.Column="2" Click="OnSearchRoleClick" Width="80"/>
+            <Button Content="Clear" Grid.Column="3" Click="OnClearSearchClick" Width="80" Margin="10,0,0,0"/>
+            <Button Content="Save" Grid.Column="4" Click="OnSaveClick" Width="80" Margin="10,0,0,0"/>
+            <Button Content="Exit" Grid.Column="5" Click="OnExitClick" Width="80" Margin="10,0,0,0"/>
+        </Grid>
+    </Grid>
+</Window>
